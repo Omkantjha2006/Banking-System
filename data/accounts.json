@@ -32,11 +32,12 @@
         "account_number": "14",
         "name": "om",
         "pin": "0710",
-        "balance": 4800.0,
+        "balance": 14800.0,
         "transactions": [
             "Account Created",
             "Deposited \u20b95000.00",
-            "Transferred \u20b9200.00 to 15"
+            "Transferred \u20b9200.00 to 15",
+            "Received \u20b910000.00 from 16"
         ]
     },
     {
@@ -47,6 +48,17 @@
         "transactions": [
             "Account Created",
             "Received \u20b9200.00 from 14"
+        ]
+    },
+    {
+        "account_number": "16",
+        "name": "shailja",
+        "pin": "1234",
+        "balance": 0.0,
+        "transactions": [
+            "Account Created",
+            "Deposited \u20b910000.00",
+            "Transferred \u20b910000.00 to 14"
         ]
     }
 ]
