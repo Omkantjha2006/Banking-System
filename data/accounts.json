@@ -1,1 +1,27 @@
-[]
+[
+    {
+        "account_number": "100001",
+        "name": "Frank",
+        "pin": "1234",
+        "balance": 15100.0,
+        "transactions": [
+            "Account Created",
+            "Deposited \u20b910000.00",
+            "Received \u20b95000.00 from 100002",
+            "Received \u20b9100.00 from 100002"
+        ]
+    },
+    {
+        "account_number": "100002",
+        "name": "Sam",
+        "pin": "0710",
+        "balance": 94800.0,
+        "transactions": [
+            "Account Created",
+            "Deposited \u20b9100000.00",
+            "Withdrawn \u20b9100.00",
+            "Transferred \u20b95000.00 to 100001",
+            "Transferred \u20b9100.00 to 100001"
+        ]
+    }
+]

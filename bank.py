@@ -5,6 +5,31 @@ from account import Account
 
 class Bank:
 
+    def total_bank_balance(self):
+        total = 0
+
+        for account in self.accounts:
+            total += account.balance
+
+        return total
+
+    def total_accounts(self):
+        return len(self.accounts)
+
+    def delete_account(self, account_number):
+
+        account = self.find_account(account_number)
+
+        if account:
+            self.accounts.remove(account)
+            self.save_accounts()
+            return True
+
+        return False
+
+    def view_all_accounts(self):
+        return self.accounts
+
     def transfer_money(self, sender, receiver_account_number, amount):
 
         receiver = self.find_account(receiver_account_number)
