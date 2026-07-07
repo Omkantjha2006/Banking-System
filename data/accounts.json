@@ -3,25 +3,41 @@
         "account_number": "100001",
         "name": "Frank",
         "pin": "1234",
-        "balance": 15100.0,
+        "balance": 15099.0,
         "transactions": [
             "Account Created",
             "Deposited \u20b910000.00",
             "Received \u20b95000.00 from 100002",
-            "Received \u20b9100.00 from 100002"
+            "Received \u20b9100.00 from 100002",
+            "[08-07-2026 00:35:31] Deposited \u20b91.00",
+            "[08-07-2026 00:35:43] Withdrawn \u20b91.00",
+            "[08-07-2026 00:36:07] Transferred \u20b91.00 to 100002",
+            "[08-07-2026 00:37:16] PIN Changed",
+            "[08-07-2026 00:44:56] PIN Changed",
+            "[08-07-2026 00:45:13] PIN Changed"
         ]
     },
     {
         "account_number": "100002",
         "name": "Sam",
         "pin": "0710",
-        "balance": 94800.0,
+        "balance": 94801.0,
         "transactions": [
             "Account Created",
             "Deposited \u20b9100000.00",
             "Withdrawn \u20b9100.00",
             "Transferred \u20b95000.00 to 100001",
-            "Transferred \u20b9100.00 to 100001"
+            "Transferred \u20b9100.00 to 100001",
+            "[08-07-2026 00:36:07] Received \u20b91.00 from 100001"
+        ]
+    },
+    {
+        "account_number": "100003",
+        "name": "Rohan",
+        "pin": "1234",
+        "balance": 0.0,
+        "transactions": [
+            "[07-07-2026 23:31:05] Account Created"
         ]
     }
 ]

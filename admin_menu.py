@@ -1,16 +1,28 @@
-from admin import ADMIN_USERNAME, ADMIN_PASSWORD
+from admin import (
+    ADMIN_USERNAME,
+    ADMIN_PASSWORD,
+    ADMIN_NAME,
+    ADMIN_ROLE
+)
+
+from utils import format_currency
 
 
 def admin_menu(bank):
 
-    username = input("Admin Username: ")
-    password = input("Admin Password: ")
+    print("\n========== ADMIN LOGIN ==========")
+
+    username = input("Username : ")
+    password = input("Password : ")
 
     if username != ADMIN_USERNAME or password != ADMIN_PASSWORD:
         print("Invalid Admin Credentials.")
         return
 
-    print("\nLogin Successful!")
+    print("\n========================================")
+    print(f"Welcome {ADMIN_NAME}")
+    print(f"Role : {ADMIN_ROLE}")
+    print("========================================")
 
     while True:
 
@@ -22,11 +34,13 @@ def admin_menu(bank):
         print("5. Total Bank Balance")
         print("6. Logout")
 
-        admin_choice = input("Enter choice: ")
+        choice = input("\nEnter Choice: ")
 
-        # ---------- View All Accounts ---------- #
+        # -----------------------------------
+        # View All Accounts
+        # -----------------------------------
 
-        if admin_choice == "1":
+        if choice == "1":
 
             accounts = bank.view_all_accounts()
 
@@ -34,21 +48,24 @@ def admin_menu(bank):
 
             if not accounts:
                 print("No accounts found.")
+                continue
 
-            else:
-                print(f"{'Account No.':<15}{'Name':<20}{'Balance'}")
-                print("-" * 50)
+            print(f"{'Account No.':<15}{'Name':<20}{'Balance'}")
+            print("-" * 50)
 
-                for account in accounts:
-                    print(
-                        f"{account.account_number:<15}"
-                        f"{account.name:<20}"
-                        f"₹{account.balance:.2f}"
-                    )
+            for account in accounts:
 
-        # ---------- Search Account ---------- #
+                print(
+                    f"{account.account_number:<15}"
+                    f"{account.name:<20}"
+                    f"{format_currency(account.balance)}"
+                )
 
-        elif admin_choice == "2":
+        # -----------------------------------
+        # Search Account
+        # -----------------------------------
+
+        elif choice == "2":
 
             account_number = input("Enter Account Number: ")
 
@@ -58,66 +75,76 @@ def admin_menu(bank):
 
                 print("\n========== ACCOUNT DETAILS ==========")
                 print(f"Account Number : {account.account_number}")
-                print(f"Name           : {account.name}")
-                print(f"Balance        : ₹{account.balance:.2f}")
+                print(f"Account Holder : {account.name}")
+                print(f"Balance        : {format_currency(account.balance)}")
                 print(f"Transactions   : {len(account.transactions)}")
 
             else:
                 print("Account not found.")
 
-        # ---------- Delete Account ---------- #
+        # -----------------------------------
+        # Delete Account
+        # -----------------------------------
 
-        elif admin_choice == "3":
+        elif choice == "3":
 
-            account_number = input("Enter Account Number to Delete: ")
+            account_number = input("Enter Account Number: ")
 
             account = bank.find_account(account_number)
 
-            if account:
+            if not account:
+                print("Account not found.")
+                continue
 
-                print("\n========== ACCOUNT DETAILS ==========")
-                print(f"Account Number : {account.account_number}")
-                print(f"Name           : {account.name}")
-                print(f"Balance        : ₹{account.balance:.2f}")
+            print("\n========== ACCOUNT DETAILS ==========")
+            print(f"Account Number : {account.account_number}")
+            print(f"Account Holder : {account.name}")
+            print(f"Balance        : {format_currency(account.balance)}")
 
-                confirm = input(
-                    "\nAre you sure you want to delete this account? (Y/N): "
-                )
+            confirm = input(
+                "\nDelete this account? (Y/N): "
+            )
 
-                if confirm.upper() == "Y":
+            if confirm.upper() == "Y":
 
-                    if bank.delete_account(account_number):
-                        print("Account deleted successfully.")
-                    else:
-                        print("Failed to delete account.")
+                if bank.delete_account(account_number):
+                    print("Account deleted successfully.")
 
                 else:
-                    print("Deletion cancelled.")
+                    print("Failed to delete account.")
 
             else:
-                print("Account not found.")
+                print("Deletion cancelled.")
 
-        # ---------- Total Accounts ---------- #
+        # -----------------------------------
+        # Total Accounts
+        # -----------------------------------
 
-        elif admin_choice == "4":
+        elif choice == "4":
 
             total = bank.total_accounts()
 
             print("\n========== TOTAL ACCOUNTS ==========")
             print(f"Total Accounts : {total}")
 
-        # ---------- Total Bank Balance ---------- #
+        # -----------------------------------
+        # Total Bank Balance
+        # -----------------------------------
 
-        elif admin_choice == "5":
+        elif choice == "5":
 
             total_balance = bank.total_bank_balance()
 
             print("\n====== TOTAL BANK BALANCE ======")
-            print(f"Total Bank Balance : ₹{total_balance:.2f}")
+            print(
+                f"Total Balance : {format_currency(total_balance)}"
+            )
 
-        # ---------- Logout ---------- #
+        # -----------------------------------
+        # Logout
+        # -----------------------------------
 
-        elif admin_choice == "6":
+        elif choice == "6":
 
             print("Admin Logged Out Successfully.")
             break
